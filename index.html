@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body style="background-color: dimgrey;">
+    <center>
+        <h1 style="color:white;">Calculator</h1>
+        <form>
+            <label style="color:white;">Enter the 1st Number (Base)</label>
+            <input type="number" id="num1" placeholder="Type here" class="form-control" style="width: 200px;">
+            <br><br>
+            <label style="color:white;">Enter the 2nd Number (Exponent)</label>
+            <input type="number" id="num2" placeholder="Type here" class="form-control" style="width: 200px;">
+            <br><br>
+            <button type="button" class="btn btn-primary" onclick="multiply()">Multiply</button>
+            <button type="button" class="btn btn-success" onclick="modulus()">Remainder</button>
+            <button type="button" class="btn btn-warning" onclick="exponent()">Exponent</button>
+            <br><br>
+            <label style="color:white;">Enter a Number to Compare To</label>
+            <input type="number" id="compareTo" placeholder="Type here" class="form-control" style="width: 200px;">
+            <br><br>
+            <button type="button" class="btn btn-secondary" onclick="compareNumbers()">Compare</button>
+        </form>
+        <h3 id="RESULT1" style="color:white;"></h3>
+        <h3 id="RESULT2" style="color:white;"></h3>
+        <h3 id="RESULT3" style="color:white;"></h3>
+        <h3 id="compareResult" style="color:white;"></h3>
+    </center>
+
+    <script>
+       
+        function multiply() {
+            var num1 = document.getElementById('num1').value;
+            var num2 = document.getElementById('num2').value;
+            
+            if (num1 === '' || num2 === '') {
+                alert("Please enter both numbers to multiply.");
+                return;
+            }
+            
+            var result = Number(num1) * Number(num2);
+            
+            document.getElementById('RESULT1').innerHTML = 'ANSWER is: ' + result;
+        }
+
+        
+        function modulus() {
+            var num1 = document.getElementById('num1').value;
+            var num2 = document.getElementById('num2').value;
+            
+            if (num1 === '' || num2 === '') {
+                alert("Please enter both numbers for modulus operation.");
+                return;
+            }
+            
+            if (Number(num2) === 0) {
+                alert("Cannot divide by zero for modulus.");
+                return;
+            }
+            
+            var result = Number(num1) % Number(num2);
+            
+            document.getElementById('RESULT2').innerHTML = num1 + ' % ' + num2 + ' is: ' + result;
+        }
+
+        
+        function exponent() {
+            var num1 = document.getElementById('num1').value;
+            var num2 = document.getElementById('num2').value;
+
+            if (num1 === '' || num2 === '') {
+                alert("Please enter both the base and the exponent.");
+                return;
+            }
+
+            var result = Math.pow(Number(num1), Number(num2)); 
+            document.getElementById('RESULT3').innerHTML = num1 + ' ^ ' + num2 + ' is: ' + result;
+        }
+
+
+        function compareNumbers() {
+            var num1 = document.getElementById('num1').value;
+            var compareTo = document.getElementById('compareTo').value;
+            
+            if (num1 === '' || compareTo === '') {
+                document.getElementById('compareResult').innerHTML = 'Please enter both numbers for comparison.';
+                return;
+            }
+            
+            if (Number(num1) === Number(compareTo)) {
+                document.getElementById('compareResult').innerHTML = 'The number is equal to ' + compareTo + '.';
+            } else if (Number(num1) < Number(compareTo)) {
+                document.getElementById('compareResult').innerHTML = 'The number is less than ' + compareTo + '.';
+            } else {
+                document.getElementById('compareResult').innerHTML = 'The number is greater than ' + compareTo + '.';
+            }
+        }
+    </script>
+</body>
+</html>
